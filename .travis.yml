@@ -8,3 +8,13 @@ before_install:
 
 script:
   - docker run -e CI=true daguob/docker-react yarn test
+
+deploy:
+  - provider: elasticbeanstalk
+  - region: "ap-southeast-1"
+  - app: "docker-react"
+  - env: "Dockerreact-env"
+  - bucket_name: "elasticbeanstalk-ap-southeast-1-288779295196"
+  - bucket_path: "docker-react"
+  on:
+    branch: master 
